@@ -1,3 +1,4 @@
+//Array finances
 var finances = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655], // change for this one will be 98...-86...
@@ -90,9 +91,8 @@ var finances = [
 var sum = 0;
 
 // The total number of months included in the dataset.
-for (var i = 0; i < finances.length; i++) {
-  console.log("Total Months: " + finances.length);
-}
+//for (var i = 0; i < finances.length; i++) {
+console.log("Total Months: " + finances.length);
 
 // The net total amount of Profit/Losses over the entire period.
 
@@ -106,6 +106,21 @@ console.log("Total: $" + sum);
 //maybe put all the changes into an array? using push(..)?
 //   * You will need to track what the total change in profits are from month to month and then find the average.
 //   * (`Total/Number of months`) ===> total change/(months -1)
+var array = [];
+for (i = 0; i < finances.length; i++) {
+  array.push(finances[i][1]);
+}
+var newarray = [];
+for (i = 1; i < array.length; i++) {
+  newarray.push(array[i] - array[i - 1]);
+}
+console.log(newarray);
+var soma;
+
+// for (var i = 0; i < finances.length; i++) {
+//   var coisa = finances[i][1] - finances[i + 1][1];
+//   console.log(coisa);
+// }
 
 // * The greatest increase in profits (date and amount) over the entire period.
 // start with 0
