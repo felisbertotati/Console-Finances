@@ -106,24 +106,30 @@ console.log("Total: $" + sum);
 //maybe put all the changes into an array? using push(..)?
 //   * You will need to track what the total change in profits are from month to month and then find the average.
 //   * (`Total/Number of months`) ===> total change/(months -1)
+
 var array = [];
 for (i = 0; i < finances.length; i++) {
   array.push(finances[i][1]);
 }
+
 var newarray = [];
 for (i = 1; i < array.length; i++) {
   newarray.push(array[i] - array[i - 1]);
 }
-console.log(newarray);
-var soma;
 
-// for (var i = 0; i < finances.length; i++) {
-//   var coisa = finances[i][1] - finances[i + 1][1];
-//   console.log(coisa);
-// }
+var sum = 0;
+for (i = 0; i < newarray.length; i++) {
+  sum += newarray[i];
+}
+
+var average = sum / newarray.length;
+console.log("Average Change: $" + average);
 
 // * The greatest increase in profits (date and amount) over the entire period.
 // start with 0
+
+var increase = 0;
+
 // check the last increase. if it's bigger than 0. keep track of the new biggest one.
 // in a loop
 // * The greatest decrease in profits (date and amount) over the entire period.
