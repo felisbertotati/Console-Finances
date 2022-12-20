@@ -88,24 +88,22 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
-var sum = 0;
+console.log("Financial Analysis");
+console.log("---------------------------");
 
 // The total number of months included in the dataset.
-//for (var i = 0; i < finances.length; i++) {
+var sum = 0;
+
 console.log("Total Months: " + finances.length);
 
 // The net total amount of Profit/Losses over the entire period.
-
 for (i = 0; i < finances.length; i++) {
   sum += finances[i][1];
 }
 console.log("Total: $" + sum);
 
-// * The average of the **changes** in Profit/Losses over the entire period.
+//  The average of the changes in Profit/Losses over the entire period.
 //calculate each change by subtracting the previous month from this month
-//maybe put all the changes into an array? using push(..)?
-//   * You will need to track what the total change in profits are from month to month and then find the average.
-//   * (`Total/Number of months`) ===> total change/(months -1)
 
 var array = [];
 for (i = 0; i < finances.length; i++) {
@@ -113,26 +111,54 @@ for (i = 0; i < finances.length; i++) {
 }
 
 var newarray = [];
-for (i = 1; i < array.length; i++) {
-  newarray.push(array[i] - array[i - 1]);
+for (i = 1; i < finances.length; i++) {
+  newarray.push([finances[i][0], finances[i][1] - finances[i - 1][1]]);
 }
 
 var sum = 0;
 for (i = 0; i < newarray.length; i++) {
-  sum += newarray[i];
+  sum += newarray[i][1];
 }
 
 var average = sum / newarray.length;
 console.log("Average Change: $" + average);
 
 // * The greatest increase in profits (date and amount) over the entire period.
-// start with 0
-
-var increase = 0;
 
 // check the last increase. if it's bigger than 0. keep track of the new biggest one.
-// in a loop
+
 // * The greatest decrease in profits (date and amount) over the entire period.
+
+var max = [];
+var min = [];
+var monthmax = [];
+var monthmin = [];
+
+for (i = 0; i < newarray.length; i++) {
+  if (newarray[i][1] > max) {
+    max = newarray[i][1];
+    monthmax = newarray[i];
+  }
+  if (newarray[i][1] < min) {
+    min = newarray[i][1];
+    monthmin = newarray[i];
+  }
+}
+
+console.log(
+  "Greatest Increase in Profits: ",
+  monthmax[0],
+  "($",
+  monthmax[1],
+  ")"
+);
+console.log(
+  "Greatest Decrease in Profit: ",
+  monthmin[0],
+  "($",
+  monthmin[1],
+  ")"
+);
 
 // Financial Analysis
 // ----------------------------
